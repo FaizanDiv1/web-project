@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Admin</title>
+        <link rel="icon" href="/img/weather.png">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
+    <body>
+        <div id="background">
+    <img src="img/background.jpeg" class="stretch" alt="" />
+    </div> 
+        <div class="main-content">
+            {{>header}}
+             <p>Welcome to Admin Panel!</p>
+           <form>
+                <input type="text" name="username" id="username" placeholder ="Username"/><br>
+                <input type="password" name="password" id="password" placeholder="Password"><br>
+                <button value="Login" id="submit">login</button>
+                
+            </form>
+          
+        </div>
+       <script src="/js/validator.js"></script>
+        {{>footer}}
+    </body>
+</html>

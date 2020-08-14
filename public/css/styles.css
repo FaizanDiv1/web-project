@@ -1,6 +1,8 @@
 body{
     color:#333333;
-    font-family:arial;
+    font-family: Candara;
+    font-size: x-large;
+    font-weight: 900;
     max-width: 650px;
     margin:0 auto;
     padding:0 16px;
@@ -12,7 +14,7 @@ body{
     flex-grow:1;
 }
 footer{
-    color:#888888;
+    color:#050505;
     border-top: 1px solid #eeeeee;
     margin-top:16px;
     padding:16px 0;
@@ -44,4 +46,17 @@ button{
     background: #888888;
     color:white;
     padding: 8px;
+}
+#background {
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
 }

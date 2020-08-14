@@ -2,6 +2,7 @@ const path=require('path')
 const express=require('express')
 const geocode=require('./utils/geocode')
 const forecast=require('./utils/forecast')
+const Weather = require('./db')
 
 const hbs=require('hbs')
 
@@ -27,26 +28,27 @@ app.use(express.static(publicDirectoryPath))
 app.get('/about',(req,res)=>{
     res.render('about',{
         title:'About Me',
-        name:'Bilal Munir'
+        name:'Faizan-FA17-BCS-108'
     })
 })
-app.get('/help',(req,res)=>{
-    res.render('help',{
-        helptext:'This is help page!',
-        title:'Help',
-        name:'Bilal Munir'
+app.get('/admin',(req,res)=>{
+    res.render('admin',{
+        helptext:'This is admin page!',
+        title:'Admin',
+        name:'Faizan-FA17-BCS-108'
     })
 })
 app.get('',(req,res)=>{
     res.render('index',{
         title:'Weather',
-        name:'Bilal Munir'
+        name:'Faizan-FA17-BCS-108'
     })
 })
-app.get('/weather',(req,res)=>{
+app.get('/weather', (req,res)=>{
+    // const weather = new Weather()
     const address=req.query.address
     if(!address){
-        return res.send({error:'you must provide a address'})
+        return res.send({error:'You must provide a address'})
     }
 
 
@@ -62,7 +64,13 @@ app.get('/weather',(req,res)=>{
            return res.send({error})
        }
        res.send({location,forecastData,address})
-       
+       const weather = new Weather ({location: location, forecast: forecastData})
+       weather.save(()=>{
+           if(!error){
+                console.log(weather)
+           }
+           
+       })
       })
     
     })
@@ -89,11 +97,11 @@ app.get('/weather',(req,res)=>{
 // })
 
 
-app.get('/help/*',(req,res)=>{
-    res.render('error',{
-        title:'Error',
-        message:'Help article not found',
-        name:'Bilal Munir',
+app.get('/success/',(req,res)=>{
+    res.render('success',{
+        title:'Admin Panel',
+        message:'Admin logged in !',
+        name:'Faizan',
     })
 
 })
@@ -101,7 +109,7 @@ app.get('*',(req,res)=>{
     res.render('error',{
         title:'Error',
         message:'Page not found',
-        name:'Bilal Munir',
+        name:'Faizan',
     })
 })
 
